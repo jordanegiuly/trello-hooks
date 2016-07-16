@@ -8,6 +8,7 @@ deploy:
     secure: KeRQ1N6pKJi7xUyZHp+7J+BQBv386BpPLM2YP2T61y/b/yu2k2ryv6AixCDwG4TEUX6mQ9A3Yz6xH7ARbHmk5t2rbrcv3KD11J6UjgCq3Lzmtcpt7nGuAa9tlOBHVkC8gIXL8WZtSHrVf9eLqzhFSbeJIi54HrsFQOAkpryBGYrigD5bbW3VeiiBk5Jv8hoQj0XEZxUD/SY1kYQeJnAJqANC2L1N3xyILbP5tnUbnYAKg1l3ADIVY3dZrS7n8ddQH9U0l5bVAkDcszX8L6Zi0IBLCV8TXu0DVpYceszvzYMqAL77ZlgBuLNGqDJ6RtZFzpbf6bTGWxEK/aqEvUtq9mZbEIzt2z93weO+PsnRXfCVZvCIDjdOKkj1gISLHbbh9WzUYdaS6KpOrarZ+tBr6GkP8WLaPsLmUclGgvWxIgILwbQCUFSJv3wsc4moE+VE5DZfuI7KJTtgFgEftnDS9Yjn6ox/vjDp8Ch6E/yg1sSs+sKDAuQZDPCRKcvA6/EUbi/TFovjmM+MhgEEQr/WW6K6ZlNDtHUIKCCiP/2TP69Bl4/2rSg+9H1DMECncP6FDeuj/3bvk79lCCPoLo8SsBpXS31uo/MxKN3UtydyAlLv1yIbyf596MFRBO5Youpl+X2Jqrj5gcViEVNtDLvsxdT+7Re7cLd7uE7H98On5oI=
   local_dir: dpl_cd_upload
   skip_cleanup: true
+  region: eu-west-1
   on: &2
     repo: jordanegiuly/trello-hooks
   bucket: trello-hooks
@@ -19,6 +20,7 @@ deploy:
   bundle_type: zip
   application: TrelloHooks
   deployment_group: TrelloHooks
+  region: eu-west-1
   on: *2
 before_deploy:
 - mkdir -p dpl_cd_upload
