@@ -15,7 +15,7 @@ deploy:
     repo: jordanegiuly/trello-hooks
   bucket: trello-hooks
 - provider: codedeploy
-  access_key_id: AKIAJ253F7NSZKJ2KCTA
+  access_key_id: AKIAJ6WO5VDPZ4EBFEUA
   secret_access_key: *1
   bucket: trello-hooks
   key: test.zip
