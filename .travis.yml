@@ -22,7 +22,7 @@ deploy:
   bundle_type: zip
   application: TrelloHooks
   deployment_group: TrelloHooks
-  region: eu-west-
+  region: eu-west-1
   wait-until-deployed: true
   on: *2
 before_deploy:
