@@ -1,23 +1,28 @@
 {
   "name": "trello-hooks",
   "version": "1.0.0",
-  "description": "",
+  "description": "Trello hooks",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 0",
+    "test": "echo \"No test specified\" && exit 0",
     "start": "node index.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jordanegiuly/trello-hooks.git"
   },
-  "author": "",
+  "author": "jordanegiuly",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/jordanegiuly/trello-hooks/issues"
   },
   "homepage": "https://github.com/jordanegiuly/trello-hooks#readme",
   "dependencies": {
-    "express": "^4.14.0"
+    "bluebird": "^3.4.1",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "lodash": "^4.13.1",
+    "node-trello": "^1.1.2",
+    "request": "^2.73.0"
   }
 }
