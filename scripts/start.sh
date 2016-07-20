@@ -1,2 +1,2 @@
-cd /var/www/app/
-npm start
+forever stopall
+forever start app/index.js
