@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: ~/spendesk-app/
+    destination: /var/www/app/
 hooks:
   ApplicationStart:
       - location: scripts/start.sh

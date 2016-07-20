@@ -1,3 +1,3 @@
-cd ~/spendesk-app/
+cd /var/www/app/
 forever stopall
-npm run staging
+forever start -c /home/ubuntu/.nvm/v5.11.0/bin/node app/index.js
