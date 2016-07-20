@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"No test specified\" && exit 0",
-    "start": "node app/index.js"
+    "start": "forever start app/index.js",
+    "list": "forever list",
+    "stop": "forever stopall"
   },
   "repository": {
     "type": "git",
@@ -21,6 +23,7 @@
     "bluebird": "^3.4.1",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
+    "forever": "^0.15.2",
     "lodash": "^4.13.1",
     "node-trello": "^1.1.2",
     "request": "^2.73.0"
