@@ -4,9 +4,9 @@ node_js:
 
 deploy:
 - provider: s3
-  access_key_id: AKIAJ6WO5VDPZ4EBFEUA
+  access_key_id: AKIAJ2KIL275BGG3NOJQ
   secret_access_key: &1
-    secure: rjOmrjhllzP8hRZ6snwoYmx0ncOpC6dORsttMptZa03JpZRof+zuCQYJlOqjYvhc/nc4q4MuI0jfeSO/gTOhG4YxFEH+/MAkhWnzz/j4WECLopgv/MxG2G5ZJveNtAKE1nNcbg/9YMhewnmSfB/Vsez8Nk6AexGIEMzz+lVvEUqgni6/IVqnfCzX7ypMYAJWzF4vFoppkOIG6r2iEzNS9qISTbeQF2/u6sm8fJw5ep5B/r44H7lOZkhoi52cg1nD4SO5O9v7rCDm/ETjkT5JwbaxRjFldVAxwDP4U9+j7ez6cOE16kLpxskp/yGKubMSJbC7JTe5dIux03kMa1NN6ieAHtyQL3lyBJdvUPG49NNHl651mtXi0dziF7bmhg2nvSh/ZVgIMopYpHWxxx0j9u/1zgmeRcItc6uRdij2IYoUDLJmotQOIXsxgNlfaIii5nGrrrYLyj9GAgeswsGK5OsQB055TKlNoQ7YEtzXEo76Geu+iI4cefsBx1zoB7o+hfaB4gCPxvTH17UF/DfXFn4Fa42q9OnuVG4SJWlx511P0kRZZJQRSE1mMvCid7LGQhFMHgZQQoQr1LJCMc2MlnT2p46Xh6jTy6HlNBMYOpufIGn/WHwk9C5ffrFx5GRKsa66IVb/c0b9a5gbbwft3jPGWbXqcIW9Fsnp24JlQvs=
+    secure: LqxGRZ7b55k1rcPvrp8SRiR7JPOt9v8y6HdEtcRTWB01Rg+I/P3hYNBGhUIXZdB9KNC3Gw+46IxSovOnqQC4AdUlxxo0PDTpa1huC4aux1aftKsrj2El4edKT4kexfCdmo7548MZw7/+33emCvRbaw9g7ErNma31IL0Kx47chmbGLeODhPXbxyhiA3anlpiGavLHbC7/shEm1SQn6Aok9Wtmnk7nUz5u6efUPQHQtiUPimx4/aUN2fqYvAvOu1NVPFdm3BCNvuiWsn4rpIIZKQPou9kvzlLwFr8XnWW8QGzNqpKJUF9mVQBRZ1XILqg0qs7J572SQcerL00rAJ6NXnttBqcf+eugIQBZ6ZOL/HAm+VEJGMmfV06y3ZFY21Ag7pD710NYSPQWK68wLIjBYSpm8lNHnlMIHpOo/kH7UWCKaJtGRoMnRSkyBhgaQE1A3+bsk4D+k9QnG/H41bDE16+xLyh9OKWsLOlaha+XxzYIIF5DwcDz29ujRDts/8kSjpAWCTHtTDwgORedQvcQX6JmxSMipjXm1eoDHdwMzJ+p4vBBoUH52w6+zwrPI9Fs26gfBbEzTX8BXSE52fDtOmz/IVF6hC41HiN0u0yhsJ4tWUpVkZlozxuLlENh1daGJJi+L8xMPbLwWjIFuho5WCXznAPbp8DGodsbbx4FW3A=
   local_dir: dpl_cd_upload
   skip_cleanup: true
   wait-until-deployed: true
@@ -15,7 +15,7 @@ deploy:
     repo: jordanegiuly/trello-hooks
   bucket: trello-hooks
 - provider: codedeploy
-  access_key_id: AKIAJ6WO5VDPZ4EBFEUA
+  access_key_id: AKIAJ2KIL275BGG3NOJQ
   secret_access_key: *1
   bucket: trello-hooks
   key: trello-hooks.zip
