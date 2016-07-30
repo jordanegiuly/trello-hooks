@@ -1,27 +1,43 @@
 'use strict';
 
+const _ = require('lodash');
+
 module.exports = (trello) => {
 
-	function newCardInFeedback(payload) {
-		console.log('newCardInFeedback');
+	function addMemberAndLabel(payload, config) {
+		console.log('addMemberAndLabel');
 		return addMember(trello, payload.action.data.card.id, payload.action.memberCreator.id)
 		.then(() => {
-
+			const labels = pickLabelsToAdd(config, payload.model.labelNames, payload.action.data.list.name);
+			addLabels(trello, payload.action.data.card.id, labels);
 		})
 	}
 
-	return [{
-		trigger: {
-			actionType: 'createCard',
-			modelName: 'Personal tasks'
-		},
-		action: newCardInFeedback
-	}];
+	return {
+		addMemberAndLabel
+	}
 }
 
 function addMember(trello, cardId, memberId) {
 	console.log('addMember', cardId, memberId);
 	return trello.postAsync('/1/cards/' + cardId + '/idMembers', { value: memberId });
+}
+
+function pickLabelsToAdd(config, labels, listName) {
+	const labelNames = config.labels[listName];
+	const result = [];
+	_.forEach(labels, (name, color) => {
+		if (name && labelNames.indexOf(name) >= 0) {
+			result.push({color, name});
+		}
+	});
+	return result;
+}
+
+function addLabels(trello, cardId, labels) {
+	return Promise.all(_.map(labels, label => {
+		return trello.postAsync('/1/cards/' + cardId + '/labels', label);
+	}));
 }
 
 

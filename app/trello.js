@@ -11,7 +11,7 @@ let trello;
 module.exports = (config) => {
 
 	trello = trello || init(config.auth);
-	const hooks = require('./hooks.js')(trello);
+	const hookActions = require('./hooks.js')(trello);
 
 	function createWebhooks() {
 		return getBoardIds(config.boards)
@@ -40,10 +40,10 @@ module.exports = (config) => {
 	function handlePayload(payload) {
 		console.log(['Payload', payload.action.type, payload.model.name].join(' - '));
 		return new Promise((resolve, reject) => {
-			_.forEach(hooks, hook => {
+			_.forEach(config.hooks, hook => {
 				if (hook.trigger.actionType === payload.action.type &&
 					hook.trigger.modelName === payload.model.name) {
-					return hook.action(payload)
+					return hookActions[hook.action](payload, hook.config)
 					.then(resolve);
 				}
 			});
