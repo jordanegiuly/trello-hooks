@@ -7,7 +7,10 @@ const logger = require('./logger.js')();
 module.exports = (trello) => {
 
 	function addMemberAndLabels(payload, config) {
-		logger.debug('addMemberAndLabels');
+		logger.debug({method: 'addMemberAndLabels', params: {
+			cardName: payload.action.data.card.name,
+			fullName: payload.action.memberCreator.fullName, 
+		}});
 		return addMember(trello, payload.action.data.card.id, payload.action.memberCreator.id)
 		.then(() => {
 			const labels = pickLabelsToAdd(config, payload.model.labelNames, payload.action.data.list.name);
@@ -21,7 +24,6 @@ module.exports = (trello) => {
 }
 
 function addMember(trello, cardId, memberId) {
-	logger.debug('addMember', cardId, memberId);
 	return trello.postAsync('/1/cards/' + cardId + '/idMembers', { value: memberId });
 }
 
@@ -33,11 +35,11 @@ function pickLabelsToAdd(config, labels, listName) {
 			result.push({color, name});
 		}
 	});
-	logger.debug('pickLabelsToAdd', result);
 	return result;
 }
 
 function addLabels(trello, cardId, labels) {
+	logger.debug({method: 'addLabels', params: {cardId, labels}})
 	return bluebird.map(labels, label => {
 		return trello.postAsync('/1/cards/' + cardId + '/labels', label);
 	}, {concurrency: 1});
