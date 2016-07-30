@@ -5,5 +5,5 @@ files:
     destination: /var/www/app/
 hooks:
   ApplicationStart:
-      - location: scripts/start.sh
+    - location: scripts/start.sh
       runas: ubuntu
