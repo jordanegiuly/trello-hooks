@@ -1,6 +1,7 @@
 'use strict';
 
 const _ = require('lodash');
+const bluebird = require('bluebird');
 
 module.exports = (trello) => {
 
@@ -9,7 +10,7 @@ module.exports = (trello) => {
 		return addMember(trello, payload.action.data.card.id, payload.action.memberCreator.id)
 		.then(() => {
 			const labels = pickLabelsToAdd(config, payload.model.labelNames, payload.action.data.list.name);
-			addLabels(trello, payload.action.data.card.id, labels);
+			return addLabels(trello, payload.action.data.card.id, labels);
 		})
 	}
 
@@ -31,13 +32,14 @@ function pickLabelsToAdd(config, labels, listName) {
 			result.push({color, name});
 		}
 	});
+	console.log('pickLabelsToAdd', result);
 	return result;
 }
 
 function addLabels(trello, cardId, labels) {
-	return Promise.all(_.map(labels, label => {
+	return bluebird.map(labels, label => {
 		return trello.postAsync('/1/cards/' + cardId + '/labels', label);
-	}));
+	}, {concurrency: 1});
 }
 
 
