@@ -5,8 +5,8 @@ const bluebird = require('bluebird');
 
 module.exports = (trello) => {
 
-	function addMemberAndLabel(payload, config) {
-		console.log('addMemberAndLabel');
+	function addMemberAndLabels(payload, config) {
+		console.log('addMemberAndLabels');
 		return addMember(trello, payload.action.data.card.id, payload.action.memberCreator.id)
 		.then(() => {
 			const labels = pickLabelsToAdd(config, payload.model.labelNames, payload.action.data.list.name);
@@ -15,7 +15,7 @@ module.exports = (trello) => {
 	}
 
 	return {
-		addMemberAndLabel
+		addMemberAndLabels
 	}
 }
 

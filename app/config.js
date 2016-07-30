@@ -19,7 +19,7 @@ const config = {
 					actionType: 'createCard',
 					modelName: 'Spendesk - Feedback'
 				},
-				action: 'addMemberAndLabel',
+				action: 'addMemberAndLabels',
 				config: {
 					labels: {
 						'Customer feature requests': ['Customer feature', '# user story #'],
@@ -45,7 +45,7 @@ const config = {
 					actionType: 'createCard',
 					modelName: 'Personal tasks'
 				},
-				action: 'addMemberAndLabel',
+				action: 'addMemberAndLabels',
 				config: {
 					labels: {
 						'TODO TODAY': ['Assigned'],
