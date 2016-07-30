@@ -2,11 +2,12 @@
 
 const _ = require('lodash');
 const bluebird = require('bluebird');
+const logger = require('./logger.js')();
 
 module.exports = (trello) => {
 
 	function addMemberAndLabels(payload, config) {
-		console.log('addMemberAndLabels');
+		logger.debug('addMemberAndLabels');
 		return addMember(trello, payload.action.data.card.id, payload.action.memberCreator.id)
 		.then(() => {
 			const labels = pickLabelsToAdd(config, payload.model.labelNames, payload.action.data.list.name);
@@ -20,7 +21,7 @@ module.exports = (trello) => {
 }
 
 function addMember(trello, cardId, memberId) {
-	console.log('addMember', cardId, memberId);
+	logger.debug('addMember', cardId, memberId);
 	return trello.postAsync('/1/cards/' + cardId + '/idMembers', { value: memberId });
 }
 
@@ -32,7 +33,7 @@ function pickLabelsToAdd(config, labels, listName) {
 			result.push({color, name});
 		}
 	});
-	console.log('pickLabelsToAdd', result);
+	logger.debug('pickLabelsToAdd', result);
 	return result;
 }
 
@@ -41,7 +42,6 @@ function addLabels(trello, cardId, labels) {
 		return trello.postAsync('/1/cards/' + cardId + '/labels', label);
 	}, {concurrency: 1});
 }
-
 
 // { model:
 //    { id: '5439112fcfc8ee235de88f9c',
@@ -84,15 +84,19 @@ function addLabels(trello, cardId, labels) {
 //         pink: '',
 //         black: '' } },
 //   action:
-//    { id: '5793492e433059b51d8e309b',
+//    { id: '579cdc3f99435ec818f8a7d3',
 //      idMemberCreator: '54385505e1b7758081a8f0ef',
-//      data: { board: [Object], list: [Object], card: [Object] },
-//      type: 'createCard',
-//      date: '2016-07-23T10:38:38.841Z',
+//      data:
+//       { label: [Object],
+//         board: [Object],
+//         card: [Object],
+//         text: 'Done',
+//         value: 'green' },
+//      type: 'addLabelToCard',
+//      date: '2016-07-30T16:56:31.241Z',
 //      memberCreator:
 //       { id: '54385505e1b7758081a8f0ef',
 //         avatarHash: 'c52a33c039ceccff339447166feaf2d5',
 //         fullName: 'Jordane G',
 //         initials: 'JG',
 //         username: 'jordaneg' } } }
-

@@ -4,6 +4,7 @@ const express = require('express');
 var bodyParser = require('body-parser');
 const env = process.env.NODE_ENV || 'development';
 const config = require('./config.js')(env);
+const logger = require('./logger.js')(config);
 const trello = require('./trello.js')(config);
 const PORT = 3000;
 const app = express();

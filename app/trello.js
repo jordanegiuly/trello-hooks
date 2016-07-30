@@ -5,6 +5,7 @@ const Trello = require('node-trello');
 const bluebird = require('bluebird');
 const request = require('request');
 bluebird.promisifyAll(request);
+const logger = require('./logger.js')();
 
 let trello;
 
@@ -21,7 +22,7 @@ module.exports = (config) => {
 			}))
 		})
 		.then(result => {
-			console.log('Done creating ' + result.length + ' webhooks.');
+			logger.info('Done creating ' + result.length + ' webhooks.');
 		});
 	}
 
@@ -33,12 +34,12 @@ module.exports = (config) => {
 			}));
 		})
 		.then(result => {
-			console.log('Done deleting ' + result.length + ' webhooks.');
+			logger.info('Done deleting ' + result.length + ' webhooks.');
 		})
 	}
 
 	function handlePayload(payload) {
-		console.log(['Payload', payload.action.type, payload.model.name].join(' - '));
+		logger.debug(payload.model.name + ' ' + payload.action.type);
 		return new Promise((resolve, reject) => {
 			_.forEach(config.hooks, hook => {
 				if (hook.trigger.actionType === payload.action.type &&
@@ -59,7 +60,6 @@ module.exports = (config) => {
 }
 
 function init(auth) {
-	console.log('INIT TRELLO');
 	const trello = new Trello(auth.TRELLO_APP_KEY, auth.TRELLO_TOKEN);
 	bluebird.promisifyAll(trello);
 	return trello;
@@ -74,17 +74,15 @@ function getWebhooks(auth, description) {
 	return request.getAsync('https://api.trello.com/1/tokens/' + auth.TRELLO_TOKEN + '/webhooks/?key=' + auth.TRELLO_APP_KEY)
 	.then(res => {
 		if (!(res.statusCode === 200)) {
-			console.log(res.statusCode);
-			throw res.body;
+			logger.warning(res.statusCode, res.body);
+			return;
 		}
 		const webhooks = JSON.parse(res.body);
 		return _.filter(webhooks, webhook => {
 			return (webhook.description == description);
 		});
 	})
-	.catch(err => {
-		console.error('err', err);
-	});
+	.catch(logger.err);
 }
 
 function createWebhook(auth, appName, callbackURL, boardId) {
@@ -96,14 +94,12 @@ function createWebhook(auth, appName, callbackURL, boardId) {
 	}})
 	.then(res => {
 		if (!(res.statusCode === 200)) {
-			console.log(res.statusCode);
-			throw res.body;
+			logger.warning(res.statusCode, res.body);
+			return;
 		}
 		return true;
 	})
-	.catch(err => {
-		console.error('err', err);
-	});
+	.catch(logger.err);
 }
 
 function getBoardIds(boardNames) {
