@@ -13,11 +13,11 @@ deploy:
   region: eu-west-1
   on: &2
     repo: jordanegiuly/trello-hooks
-  bucket: trello-hooks/zips
+  bucket: trello-hooks
 - provider: codedeploy
   access_key_id: AKIAJ2KIL275BGG3NOJQ
   secret_access_key: *1
-  bucket: trello-hooks/zips
+  bucket: trello-hooks
   key: trello-hooks.zip
   bundle_type: zip
   application: TrelloHooks

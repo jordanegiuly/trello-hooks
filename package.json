@@ -7,7 +7,10 @@
     "test": "echo \"No test specified\" && exit 0",
     "start": "forever start app/index.js",
     "list": "forever list",
-    "stop": "forever stopall"
+    "stop": "forever stopall",
+    "startDev": "nodemon app/index.js",
+    "createWebhooks": "node jobs/createWebhooks.js",
+    "deleteWebhooks": "node jobs/deleteWebhooks.js"
   },
   "repository": {
     "type": "git",
@@ -26,6 +29,7 @@
     "forever": "^0.15.2",
     "lodash": "^4.13.1",
     "node-trello": "^1.1.2",
+    "nodemon": "^1.9.2",
     "request": "^2.73.0"
   }
 }
