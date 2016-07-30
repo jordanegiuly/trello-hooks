@@ -1,6 +1,7 @@
 'use strict';
 
-const config = require('../app/config.js');
+const env = process.env.NODE_ENV || 'development';
+const config = require('../app/config.js')(env);
 const trello = require('../app/trello.js')(config);
 
 trello.createWebhooks();
