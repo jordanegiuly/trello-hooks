@@ -39,7 +39,10 @@ module.exports = (config) => {
 	}
 
 	function handlePayload(payload) {
-		logger.debug(payload.model.name + ' ' + payload.action.type);
+		logger.debug({method: 'handlePayload', params: {
+			name: payload.model.name,
+			type: payload.action.type
+		}});
 		return new Promise((resolve, reject) => {
 			_.forEach(config.hooks, hook => {
 				if (hook.trigger.actionType === payload.action.type &&
