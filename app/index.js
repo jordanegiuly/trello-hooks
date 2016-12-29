@@ -7,7 +7,7 @@ const env = process.env.NODE_ENV || 'development';
 // const logger = require('./logger.js')(config);
 // const trello = require('./trello.js')(config.trello);
 // const asana = require('./asana.js')(config.asana);
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const app = express();
 
 app.use(bodyParser.urlencoded({
