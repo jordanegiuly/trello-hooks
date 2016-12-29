@@ -1,7 +1,7 @@
 {
-  "name": "spendesk-hooks",
+  "name": "trello-hooks",
   "version": "1.0.0",
-  "description": "Spendesk hooks",
+  "description": "Trello hooks",
   "main": "index.js",
   "scripts": {
     "test": "echo \"No test specified\" && exit 0",
@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jordanegiuly/spendesk-hooks.git"
+    "url": "git+https://github.com/jordanegiuly/trello-hooks.git"
   },
   "author": "jordanegiuly",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jordanegiuly/spendesk-hooks/issues"
+    "url": "https://github.com/jordanegiuly/trello-hooks/issues"
   },
-  "homepage": "https://github.com/jordanegiuly/spendesk-hooks#readme",
+  "homepage": "https://github.com/jordanegiuly/trello-hooks#readme",
   "dependencies": {
     "asana": "^0.15.0",
     "bluebird": "^3.4.1",
