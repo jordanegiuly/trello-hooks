@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
 	console.log('GET /');
-	res.send(`HELLO WORLD ${env}`);
+	res.send(`HELLO WORLD YO ${env}`);
 });
 
 app.get('/trellohooks', (req, res) => {
