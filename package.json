@@ -1,28 +1,27 @@
 {
-  "name": "trello-hooks",
+  "name": "spendesk-hooks",
   "version": "1.0.0",
-  "description": "Trello hooks",
+  "description": "Spendesk hooks",
   "main": "index.js",
   "scripts": {
     "test": "echo \"No test specified\" && exit 0",
     "start": "forever start app/index.js",
     "list": "forever list",
     "stop": "forever stopall",
-    "startDev": "nodemon app/index.js",
-    "createWebhooks": "node jobs/createWebhooks.js",
-    "deleteWebhooks": "node jobs/deleteWebhooks.js"
+    "startDev": "nodemon app/index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jordanegiuly/trello-hooks.git"
+    "url": "git+https://github.com/jordanegiuly/spendesk-hooks.git"
   },
   "author": "jordanegiuly",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jordanegiuly/trello-hooks/issues"
+    "url": "https://github.com/jordanegiuly/spendesk-hooks/issues"
   },
-  "homepage": "https://github.com/jordanegiuly/trello-hooks#readme",
+  "homepage": "https://github.com/jordanegiuly/spendesk-hooks#readme",
   "dependencies": {
+    "asana": "^0.15.0",
     "bluebird": "^3.4.1",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
