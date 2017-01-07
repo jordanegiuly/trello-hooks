@@ -1,7 +1,19 @@
 'use strict';
-const auth = require('../.auth.json');
+
+let auth;
 
 module.exports = (env) => {
+	if (env === 'development') {
+		auth = require('../.auth.json');
+	} else {
+		auth = {
+			TRELLO_APP_KEY: process.env.TRELLO_APP_KEY,
+			TRELLO_SECRET: process.env.TRELLO_SECRET,
+			TRELLO_TOKEN: process.env.TRELLO_TOKEN,
+			LOG_ENTRIES_TOKEN: process.env.LOG_ENTRIES_TOKEN,
+			ASANA_ACCESS_TOKEN: process.env.ASANA_ACCESS_TOKEN
+		};
+	}
 	return config[env];
 }
 
