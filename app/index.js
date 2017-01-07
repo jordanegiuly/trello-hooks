@@ -3,10 +3,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const env = process.env.NODE_ENV || 'development';
-// const config = require('../config')(env);
-// const logger = require('./logger.js')(config);
-// const trello = require('./trello.js')(config.trello);
-// const asana = require('./asana.js')(config.asana);
+const config = require('../config')(env);
+const logger = require('./logger.js')(config);
+const trello = require('./trello.js')(config.trello);
+const asana = require('./asana.js')(config.asana);
 const PORT = process.env.PORT || 3000;
 const app = express();
 
@@ -34,7 +34,7 @@ app.post('/trellohooks', (req, res) => {
 });
 
 app.get('/asana/gethook/:id', (req, res) => {
-	console.log('GET /asana/gethook/' + req.params.id);
+	console.log('GET /asana/gethook/235804693150728' + req.params.id);
 	asana.getHook(req.params.id)
 	.then(hook => {
 		return hook || asana.createWebhook(req.params.id);
