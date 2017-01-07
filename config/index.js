@@ -36,7 +36,7 @@ const config = {
 		},
 		asana: {
 			auth: auth,
-			callbackURL: 'https://ec2-52-209-21-252.eu-west-1.compute.amazonaws.com/asana/hook/',
+			callbackURL: 'http://test-jordane-hooks-dev.eu-west-1.elasticbeanstalk.com/',
 			workspaceId: '182877658733124'
 		}
 	},
