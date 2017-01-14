@@ -15,11 +15,13 @@ module.exports = (config) => {
   // const hookActions = require('./hooks.js')(asana);
 
   function createWebhook(id) {
+    logger.debug({method: 'createWebhook', params: id})
     console.log('createWebhook', config.callbackURL + id);
     return asana.webhooks.create(id, config.callbackURL + id, {}) // TODO
   }
 
   function getHook(resourceId) {
+    logger.debug({method: 'getHook', params: resourceId})
     return asana.webhooks.getAll(config.workspaceId) // TODO
     .then(res => {
       return _.find(res.data, (hook) => {

@@ -16,7 +16,10 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
-	console.log('GET /');
+	logger.info({
+		method: 'GET',
+		route: '/'
+	})
 	res.send(`HELLO WORLD YO ${env}`);
 });
 
@@ -34,6 +37,10 @@ app.post('/trellohooks', (req, res) => {
 });
 
 app.get('/asana/gethook/:id', (req, res) => {
+	logger.info({
+		method: 'GET',
+		route: '/asana/gethook/' + req.params.id
+	});
 	console.log('GET /asana/gethook/235804693150728' + req.params.id);
 	asana.getHook(req.params.id)
 	.then(hook => {
@@ -48,6 +55,10 @@ app.get('/asana/gethook/:id', (req, res) => {
 });
 
 app.get('/asana/deletehook/:id', (req, res) => {
+	logger.info({
+		method: 'GET',
+		route: '/asana/gethook/' + req.params.id
+	});
 	console.log('GET /asana/deletehook/' + req.params.id);
 	asana.deleteHook(req.params.id)
 	.then(result => {
@@ -59,6 +70,10 @@ app.get('/asana/deletehook/:id', (req, res) => {
 })
 
 app.post('/asana/hook/:id', (req, res) => {
+	logger.info({
+		method: 'POST',
+		route: '/asana/hook/' + req.params.id
+	});
 	console.log('POST /asana/hook/' + req.params.id);
 	// asana.handlePayload(req.body)
 	// .then(() => {
