@@ -2,7 +2,6 @@
 
 module.exports = (env) => {
 	let auth;
-	console.log('config env', env);
 	if (env === 'development') {
 		auth = require('../.auth.json');
 	} else {
@@ -14,8 +13,6 @@ module.exports = (env) => {
 			ASANA_ACCESS_TOKEN: process.env.ASANA_ACCESS_TOKEN
 		};
 	}
-
-	console.log('auth', auth);
 
 	const config = {
 		production: {

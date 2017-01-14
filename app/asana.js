@@ -15,7 +15,6 @@ module.exports = (config) => {
   // const hookActions = require('./hooks.js')(asana);
 
   function createWebhook(id) {
-    console.log(config);
     console.log('createWebhook', config.callbackURL + id);
     return asana.webhooks.create(id, config.callbackURL + id, {}) // TODO
   }

@@ -9,7 +9,6 @@ module.exports = (config) => {
 };
 
 function init(config) {
-  console.log('init config', config)
 	return new Logger({
   		token: config.auth.LOG_ENTRIES_TOKEN
 	});
