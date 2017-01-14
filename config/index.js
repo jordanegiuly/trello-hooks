@@ -45,7 +45,7 @@ module.exports = (env) => {
 			},
 			asana: {
 				auth: auth,
-				callbackURL: 'http://test-jordane-hooks-dev.eu-west-1.elasticbeanstalk.com/',
+				callbackURL: 'https://spendesk-hooks.herokuapp.com/',
 				workspaceId: '182877658733124'
 			}
 		},

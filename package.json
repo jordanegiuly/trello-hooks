@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "Trello hooks",
   "main": "index.js",
+  "engines": {
+    "node": "6.2.2",
+    "npm": "3.8.6"
+  },
   "scripts": {
     "test": "echo \"No test specified\" && exit 0",
     "start": "node app/index.js",
