@@ -48,8 +48,11 @@ module.exports = (env) => {
 				callbackURL: 'https://spendesk-hooks.herokuapp.com/asana/hook/',
 				workspaceId: '182877658733124',
 				hooks: {
-					feedbackProject: 195208910805602,
-					feedbackTag: 246926738750671
+					feedbackProject: 246935434971281,
+					feedbackSection: 246936685519395,
+					bugSection: 246936685519393,
+					feedbackTag: 246926738750671,
+					bugTag: 195240636254761
 				}
 			}
 		},
@@ -85,7 +88,10 @@ module.exports = (env) => {
 				workspaceId: '182877658733124',
 				hooks: {
 					feedbackProject: 246912891949753,
-					feedbackTag: 246926738750671
+					feedbackSection: 246936685519350,
+					bugSection: 246936685519354,
+					feedbackTag: 246926738750671,
+					bugTag: 195240636254761
 				}
 			}
 		}

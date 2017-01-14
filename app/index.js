@@ -74,7 +74,7 @@ app.post('/asana/hook/:id', (req, res) => {
 	});
 	console.log('POST /asana/hook/' + req.params.id);
 	// console.log('body', req.body);
-	asana.handlePayload(req.body.events)
+	asana.handlePayload(req.params.id, req.body.events)
 	.then(() => {
 		res.header('x-hook-secret', req.headers['x-hook-secret'])
 		res.send('OK');
