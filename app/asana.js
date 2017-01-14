@@ -40,9 +40,9 @@ module.exports = (config) => {
     });
   }
 
-  function handlePayload(events) {
+  function handlePayload(projectId, events) {
     events = events || [];
-    return hooks(events);
+    return hooks(projectId, events);
   }
 
   // function handlePayload(payload) {
