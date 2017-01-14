@@ -46,7 +46,11 @@ module.exports = (env) => {
 			asana: {
 				auth: auth,
 				callbackURL: 'https://spendesk-hooks.herokuapp.com/asana/hook/',
-				workspaceId: '182877658733124'
+				workspaceId: '182877658733124',
+				hooks: {
+					feedbackProject: 195208910805602,
+					feedbackTag: 246926738750671
+				}
 			}
 		},
 		development: {
@@ -78,7 +82,11 @@ module.exports = (env) => {
 			asana: {
 				auth: auth,
 				callbackURL: 'https://fc400469.ngrok.io/asana/hook/',
-				workspaceId: '182877658733124'
+				workspaceId: '182877658733124',
+				hooks: {
+					feedbackProject: 246912891949753,
+					feedbackTag: 246926738750671
+				}
 			}
 		}
 	}

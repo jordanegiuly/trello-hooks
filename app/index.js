@@ -5,7 +5,6 @@ const bodyParser = require('body-parser');
 const env = process.env.NODE_ENV || 'development';
 const config = require('../config')(env);
 const logger = require('./logger.js')(config);
-// const trello = require('./trello.js')(config.trello);
 const asana = require('./asana.js')(config.asana);
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -41,7 +40,6 @@ app.get('/asana/gethook/:id', (req, res) => {
 		method: 'GET',
 		route: '/asana/gethook/' + req.params.id
 	});
-	console.log('GET /asana/gethook/235804693150728' + req.params.id);
 	asana.getHook(req.params.id)
 	.then(hook => {
 		return hook || asana.createWebhook(req.params.id);
@@ -75,12 +73,12 @@ app.post('/asana/hook/:id', (req, res) => {
 		route: '/asana/hook/' + req.params.id
 	});
 	console.log('POST /asana/hook/' + req.params.id);
-	// asana.handlePayload(req.body)
-	// .then(() => {
-	// 	res.send('OK');
-	// });
-	res.header('x-hook-secret', req.headers['x-hook-secret'])
-	res.send('OK');
+	// console.log('body', req.body);
+	asana.handlePayload(req.body.events)
+	.then(() => {
+		res.header('x-hook-secret', req.headers['x-hook-secret'])
+		res.send('OK');
+	});
 });
 
 app.listen(PORT, () => {

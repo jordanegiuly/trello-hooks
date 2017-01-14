@@ -12,13 +12,7 @@ let asana;
 
 module.exports = (config) => {
   asana = asana || init(config.auth);
-  // const hookActions = require('./hooks.js')(asana);
-
-  function createWebhook(id) {
-    logger.debug({method: 'createWebhook', params: id})
-    console.log('createWebhook', config.callbackURL + id);
-    return asana.webhooks.create(id, config.callbackURL + id, {}) // TODO
-  }
+  const hooks = require('./hooks').asana(asana, config.hooks);
 
   function getHook(resourceId) {
     logger.debug({method: 'getHook', params: resourceId})
@@ -28,6 +22,12 @@ module.exports = (config) => {
         return (hook.resource.id == resourceId);
       });
     })
+  }
+
+  function createWebhook(id) {
+    logger.debug({method: 'createWebhook', params: id})
+    console.log('createWebhook', config.callbackURL + id);
+    return asana.webhooks.create(id, config.callbackURL + id, {}) // TODO
   }
 
   function deleteHook(resourceId) {
@@ -40,29 +40,10 @@ module.exports = (config) => {
     });
   }
 
-  // function createWebhook() {
-  //   return getBoardIds(config.boards)
-  //   .then(boardIds => {
-  //     return Promise.all(_.map(boardIds, boardId => {
-  //       return createWebhook(config.auth, config.appName, config.callbackURL, boardId);
-  //     }))
-  //   })
-  //   .then(result => {
-  //     logger.info('Done creating ' + result.length + ' webhooks.');
-  //   });
-  // }
-
-  // function deleteWebhooks() {
-  //   return getWebhooks(config.auth, config.appName)
-  //   .then(webhooks => {
-  //     return Promise.all(_.map(webhooks, webhook => {
-  //       return asana.delAsync('/1/webhooks/' + webhook.id);
-  //     }));
-  //   })
-  //   .then(result => {
-  //     logger.info('Done deleting ' + result.length + ' webhooks.');
-  //   })
-  // }
+  function handlePayload(events) {
+    events = events || [];
+    return hooks(events);
+  }
 
   // function handlePayload(payload) {
   //   logger.debug({method: 'handlePayload', params: {
@@ -84,7 +65,8 @@ module.exports = (config) => {
   return {
     createWebhook,
     getHook,
-    deleteHook
+    deleteHook,
+    handlePayload
   }
 }
 
