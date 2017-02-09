@@ -61,57 +61,41 @@ function newTaskInFeedback(payload) {
       let html_notes, tag;
 
       if (membership.section.id === config.feedbackSection) {
-        html_notes = `<strong>Raw feedback:</strong> [
+        html_notes = `<strong>1. Raw feedback:</strong> [
 TODO
 ]
-<strong>Informant type:</strong>
-- [ ] Team member
-- [ ] Customer
-- [ ] Opportunity
-<strong>Informant info:</strong>
-- Name: [TODO]
-- Company name: [TODO]
-<strong>Feedback source:</strong>
-- [ ] Meeting
-- [ ] Phone
-- [ ] Mail
-- [ ] Intercom
-- [ ] Slack
-- [ ] Other
-<strong>Link to resource (Intercom, Slack):</strong>[
+<strong>2. Informant type:</strong>
+- [ ] 2.1. Team member
+- [ ] 2.2. Customer
+- [ ] 2.3. Opportunity
+<strong>3. Informant info:</strong>
+- 3.1. Name: [TODO]
+- 3.2. Contact (email): [TODO]
+- 3.3. Company name: [TODO]
+- 3.4. Company plan: [TODO]
+<strong>4. Link to resource</strong> (Intercom, Slack, if any):[
 TODO
 ]
-<strong>Product scope:</strong>
-- [ ] WebApp
-- [ ] Mobile
-- [ ] Plugin
-- [ ] Static website`;
+`;
         tag = config.feedbackTag;
       }
 
       if (membership.section.id === config.bugSection) {
-        html_notes = `<strong>Description</strong> (please include screenshots and console content): [
+        html_notes = `<strong>1. Description</strong> (please include screenshots and console content): [
 TODO
 ]
-<strong>User id (if any):</strong> [
+<strong>2. User email</strong> (if any): [
 TODO
 ]
-<strong>Resource id (ex: request, if any):</strong> [
+<strong>3. Resource id</strong> (request, payment, if any): [
 TODO
 ]
-<strong>Device (browser version, mobile):</strong> [
+<strong>4. Device</strong> (browser version, mobile): [
 TODO
 ]
-<strong>Link to resource (Intercom, Slack):</strong> [
+<strong>5. Link to resource</strong> (Intercom, Slack, if any): [
 TODO
-]
-<strong>Bug source:</strong>
-- [ ] Meeting
-- [ ] Phone
-- [ ] Mail
-- [ ] Intercom
-- [ ] Slack
-- [ ] Other`;
+]`;
         tag = config.bugTag;
       }
       return asana.tasks.update(payload.resource, { html_notes })

@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
 		method: 'GET',
 		route: '/'
 	})
-	res.send(`HELLO WORLD YO ${env}`);
+	res.send(`Spendesk hooks up and running (env: ${env})!`);
 });
 
 app.get('/trellohooks', (req, res) => {
