@@ -52,7 +52,24 @@ module.exports = (env) => {
 					feedbackSection: 246936685519395,
 					bugSection: 246936685519393,
 					feedbackTag: 246926738750671,
-					bugTag: 195240636254761
+					bugTag: 195240636254761,
+					listings: [
+						{
+							name: 'feature',
+							project: 247135399284257,
+							tag: 235359699918433
+						},
+						{
+							name: 'internal',
+							project: 257514715599890,
+							tag: 256984175450147
+						},
+						{
+							name: 'improvement',
+							project: 257514715599888,
+							tag: 196716132093496
+						}
+					]
 				}
 			}
 		},
@@ -61,7 +78,7 @@ module.exports = (env) => {
 			trello: {
 				auth: auth,
 				appName: 'trelloHooks',
-				callbackURL: 'https://42542634.ngrok.io/trellohooks',
+				callbackURL: 'https://28b0a6aa.ngrok.io/trellohooks',
 				boards: [
 					'Personal tasks'
 				],
@@ -84,14 +101,26 @@ module.exports = (env) => {
 			},
 			asana: {
 				auth: auth,
-				callbackURL: 'https://fc400469.ngrok.io/asana/hook/',
+				callbackURL: 'https://28b0a6aa.ngrok.io/asana/hook/',
 				workspaceId: '182877658733124',
 				hooks: {
 					feedbackProject: 246912891949753,
 					feedbackSection: 246936685519350,
 					bugSection: 246936685519354,
 					feedbackTag: 246926738750671,
-					bugTag: 195240636254761
+					bugTag: 195240636254761,
+					listings: [
+						{
+							name: 'internal',
+							project: 268877375280987,
+							tag: 256984175450147
+						},
+						{
+							name: 'feature',
+							project: 268877375280986,
+							tag: 235359699918433
+						}
+					]
 				}
 			}
 		}

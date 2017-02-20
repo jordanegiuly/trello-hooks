@@ -73,12 +73,14 @@ app.post('/asana/hook/:id', (req, res) => {
 		route: '/asana/hook/' + req.params.id
 	});
 	console.log('POST /asana/hook/' + req.params.id);
-	// console.log('body', req.body);
 	asana.handlePayload(req.params.id, req.body.events)
 	.then(() => {
 		res.header('x-hook-secret', req.headers['x-hook-secret'])
 		res.send('OK');
-	});
+	})
+	.catch(err => {
+		console.log(err);
+	})
 });
 
 app.listen(PORT, () => {
