@@ -174,17 +174,17 @@ function handleSubTaskFeedback(task, parent) {
   const { feedback, userName, userEmail, company } = parseDescription(task.notes);
   return asana.tasks.update(task.id, {name: [userEmail, company, task.name].join(', ')})
   .then(() => {
-    return updatePriority(parent.parent, task)
+    return updatePriority(parent.parent)
   })
 }
 
 function handleUpvote(task, parent) {
   console.log('handleUpvote', task, parent);
-  return updatePriority(parent.parent, task);
+  return updatePriority(parent.parent);
 }
 
-function updatePriority(task, feedback) {
-  console.log('updatePriority', task, feedback)
+function updatePriority(task) {
+  console.log('updatePriority', task)
   let {priority, name} = parsePriority(task.name);
   priority = priority - 1;
   if (priority < 10) {
@@ -237,6 +237,12 @@ function newTaskInListing(payload, listing) {
   return asana.tasks.addTag(payload.resource, {tag: listing.tag })
   .then(() => {
     return Promise.all(promises)
+  })
+  .then(() => {
+    return asana.tasks.findById(payload.resource)
+  })
+  .then(task => {
+    return updatePriority(task)
   })
   .catch(err => {
     console.log('newTaskInListing', payload.resource, err.message);
