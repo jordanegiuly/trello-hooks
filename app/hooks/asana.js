@@ -64,8 +64,7 @@ function parseEvents(projectId, events) {
           }
         })
         .catch(err => {
-          console.log('asana.tasks.findById', event.resource, err, err.message);
-          return resolve({});
+          console.log(err.message);
         });
       };
       if (event.type === TASK && event.action === ADDED) {
@@ -78,8 +77,7 @@ function parseEvents(projectId, events) {
           });
         })
         .catch(err => {
-          console.log('asana.tasks.findById', event.parent, err, err.message);
-          return resolve({});
+          console.log(err.message);
         })
       }
       return resolve({});
@@ -187,8 +185,7 @@ function subTaskAdded(payload, parent) {
     }
   })
   .catch(err => {
-    console.log('asana.tasks.findById', payload.resource, err, err.message);
-    return;
+    console.log(err.message);
   });
 }
 
