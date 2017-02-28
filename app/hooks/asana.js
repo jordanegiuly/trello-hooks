@@ -64,7 +64,8 @@ function parseEvents(projectId, events) {
           }
         })
         .catch(err => {
-          console.log(err.message);
+          console.log('asana.tasks.findById', event.resource, err.message);
+          return resolve({});
         });
       };
       if (event.type === TASK && event.action === ADDED) {
@@ -77,7 +78,8 @@ function parseEvents(projectId, events) {
           });
         })
         .catch(err => {
-          console.log(err.message);
+          console.log('asana.tasks.findById', event.parent, err.message);
+          return resolve({});
         })
       }
       return resolve({});
@@ -156,7 +158,10 @@ TODO
         return asana.tasks.addTag(payload.resource, {tag: tag });
       })
       .catch(err => {
-        console.log(err.message);
+        console.log('asana.tasks.update', 'payload.resource', err.message);
+        return new Promise((resolve, reject) => {
+          return resolve({});
+        });
       });
     }
     return new Promise((resolve, reject) => {
@@ -185,7 +190,10 @@ function subTaskAdded(payload, parent) {
     }
   })
   .catch(err => {
-    console.log(err.message);
+    console.log('subTaskAdded', payload.resource, err.message);
+    return new Promise((resolve, reject) => {
+      return resolve({});
+    });
   });
 }
 
@@ -263,6 +271,9 @@ function newTaskInListing(payload, listing) {
     return Promise.all(promises)
   })
   .catch(err => {
-    console.log(err);
+    console.log('newTaskInListing', payload.resource, err.message);
+    return new Promise((resolve, reject) => {
+      return resolve({});
+    });
   })
 }
