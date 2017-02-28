@@ -62,6 +62,10 @@ function parseEvents(projectId, events) {
               params: listing
             });
           }
+        })
+        .catch(err => {
+          console.log('asana.tasks.findById', event.resource, err, err.message);
+          return resolve({});
         });
       };
       if (event.type === TASK && event.action === ADDED) {
@@ -74,6 +78,7 @@ function parseEvents(projectId, events) {
           });
         })
         .catch(err => {
+          console.log('asana.tasks.findById', event.parent, err, err.message);
           return resolve({});
         })
       }
@@ -181,6 +186,10 @@ function subTaskAdded(payload, parent) {
       return handleUpvote(task, parent)
     }
   })
+  .catch(err => {
+    console.log('asana.tasks.findById', payload.resource, err, err.message);
+    return;
+  });
 }
 
 function isUpvote(parent) {

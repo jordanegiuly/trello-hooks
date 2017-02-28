@@ -6,8 +6,6 @@ const request = require('request');
 bluebird.promisifyAll(request);
 const logger = require('./logger.js')();
 const Asana = require('asana');
-// const auth = require('./.auth.json').ASANA_ACCESS_TOKEN;
-
 let asana;
 
 module.exports = (config) => {
@@ -44,23 +42,6 @@ module.exports = (config) => {
     events = events || [];
     return hooks(projectId, events);
   }
-
-  // function handlePayload(payload) {
-  //   logger.debug({method: 'handlePayload', params: {
-  //     name: payload.model.name,
-  //     type: payload.action.type
-  //   }});
-  //   return new Promise((resolve, reject) => {
-  //     _.forEach(config.hooks, hook => {
-  //       if (hook.trigger.actionType === payload.action.type &&
-  //         hook.trigger.modelName === payload.model.name) {
-  //         return hookActions[hook.action](payload, hook.config)
-  //         .then(resolve);
-  //       }
-  //     });
-  //     // resolve();
-  //   });
-  // }
 
   return {
     createWebhook,
