@@ -113,57 +113,25 @@ function newTaskInFeedback(payload) {
       return (_membership.project.id === config.feedbackProject);
     });
     if (membership && membership.section) {
-      let html_notes, tag;
+      let {html_notes, tag} = get_html_notes(membership.section.id);
 
-      if (membership.section.id === config.feedbackSection) {
-        html_notes = `<strong>1. Raw feedback:</strong> [
-TODO
-]
-<strong>2. Informant type:</strong>
-- [ ] 2.1. Team member
-- [ ] 2.2. Customer
-- [ ] 2.3. Opportunity
-<strong>3. Informant info:</strong>
-- 3.1. Name: [TODO]
-- 3.2. Contact (email): [TODO]
-- 3.3. Company name: [TODO]
-- 3.4. Company plan: [TODO]
-<strong>4. Link to resource</strong> (Intercom, Slack, if any):[
-TODO
-]
-`;
-        tag = config.feedbackTag;
-      }
-
-      if (membership.section.id === config.bugSection) {
-        html_notes = `<strong>1. Description</strong> (please include screenshots and console content): [
-TODO
-]
-<strong>2. User email</strong> (if any): [
-TODO
-]
-<strong>3. Resource id</strong> (request, payment, if any): [
-TODO
-]
-<strong>4. Device</strong> (browser version, mobile): [
-TODO
-]
-<strong>5. Link to resource</strong> (Intercom, Slack, if any): [
-TODO
-]`;
-        tag = config.bugTag;
-      }
       return asana.tasks.update(payload.resource, { html_notes })
       .then(() => {
         return asana.tasks.addTag(payload.resource, {tag: tag });
       })
       .catch(err => {
-        console.log('asana.tasks.update', 'payload.resource', err.message);
+        console.log('asana.tasks.update', payload.resource, err.message);
         return new Promise((resolve, reject) => {
           return resolve({});
         });
       });
     }
+    return new Promise((resolve, reject) => {
+      return resolve({});
+    });
+  })
+  .catch(err => {
+    console.log('newTaskInFeedback', payload.resource, err.message);
     return new Promise((resolve, reject) => {
       return resolve({});
     });
@@ -276,4 +244,49 @@ function newTaskInListing(payload, listing) {
       return resolve({});
     });
   })
+}
+
+
+function get_html_notes(section_id) {
+  let html_notes = '';
+  let tag;
+  if (section_id === config.feedbackSection) {
+    html_notes = `<strong>1. Raw feedback:</strong> [
+TODO
+]
+<strong>2. Informant type:</strong>
+- [ ] 2.1. Team member
+- [ ] 2.2. Customer
+- [ ] 2.3. Opportunity
+<strong>3. Informant info:</strong>
+- 3.1. Name: [TODO]
+- 3.2. Contact (email): [TODO]
+- 3.3. Company name: [TODO]
+- 3.4. Company plan: [TODO]
+<strong>4. Link to resource</strong> (Intercom, Slack, if any):[
+TODO
+]
+`;
+    tag = config.feedbackTag;
+  }
+
+  if (section_id === config.bugSection) {
+    html_notes = `<strong>1. Description</strong> (please include screenshots and console content): [
+TODO
+]
+<strong>2. User email</strong> (if any): [
+TODO
+]
+<strong>3. Resource id</strong> (request, payment, if any): [
+TODO
+]
+<strong>4. Device</strong> (browser version, mobile): [
+TODO
+]
+<strong>5. Link to resource</strong> (Intercom, Slack, if any): [
+TODO
+]`;
+    tag = config.bugTag;
+  }
+  return {html_notes, tag};
 }
